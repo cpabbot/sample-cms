@@ -1,31 +1,21 @@
 // import styles from "../styles/BlogList.module.css"
+import { PostProps } from "@/app/page";
+import Link from "next/link";
 
-export type BlogFrontMatter = {
-  title: string
-  description: string
-  publishedDate: string
-  tags: string[]
-}
-
-export type BlogPostProps = {
-  slug: string
-  siteTitle: string
-  frontMatter: BlogFrontMatter
-  markdownBody: any
-  wordCount: number
-  readingTime: string
-}
-
-export type BlogPostsProps = {
-  posts?: BlogPostProps[]
-}
-
-const BlogList = ({ posts }: BlogPostsProps) => {
-    return (
+const BlogList = ({ posts }: { posts: PostProps[] }) => {
+  return (
     <div>
       <h3>List of all blog posts will go here</h3>
+      {!posts || (!posts.length && <i>no posts</i>)}
+      {posts &&
+        posts.length &&
+        posts.map((post) => (
+          <div key={post.slug}>
+            <Link href={`./${post.slug}`}>{post.slug}</Link>
+          </div>
+        ))}
     </div>
-    )
-}
+  );
+};
 
-export default BlogList
+export default BlogList;
