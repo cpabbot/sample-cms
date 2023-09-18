@@ -2,3 +2,12 @@
   /* variables */
 }
 
+.title {
+  color: #555;
+  margin: 3vh 3vw;
+}
+
+.title-link {
+  text-decoration: none;
+}
+

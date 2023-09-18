@@ -4,6 +4,7 @@ import path from "path";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
+import styles from "./post.module.css";
 
 export type Frontmatter = {
   title: string;
@@ -32,8 +33,8 @@ export async function getPostData(slug: string) {
 export default async function Post({ params }: Params) {
   const { data, content } = await getPostData(params.slug);
   return (
-    <main>
-      Title: {data.title}
+    <main className={styles.post_container}>
+      <h2>{data.title}</h2>
       <Image width={200} height={120} src={data.hero_image} alt="hero" />
       <ReactMarkdown>{content}</ReactMarkdown>
     </main>
